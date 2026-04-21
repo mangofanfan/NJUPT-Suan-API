@@ -19,7 +19,6 @@ from njupt_api.baselib import (
     log_record_serialize,
     logger,
 )
-from njupt_api.zhengfang.zhengfang import ZhengFang
 from router import __version__
 from router.admin_router import admin_router
 from router.api_router import api_router
@@ -52,16 +51,6 @@ async def life_span(_: FastAPI) -> AsyncGenerator[None, None]:
         logger.info("🌙 NJUPT API Suan 正在关闭。")
         watcher_task.cancel()
         logger.info("配置文件监听任务已结束。")
-
-
-@asynccontextmanager
-async def jwxt(username: str, password: str) -> AsyncGenerator[ZhengFang, None]:
-    zf = ZhengFang()
-    await zf.start()
-    await zf.login(username, password)
-    yield zf
-    await zf.close()
-    return
 
 
 app = FastAPI(lifespan=combine_lifespans(life_span, mcp_app.lifespan))

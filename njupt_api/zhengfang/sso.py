@@ -1,5 +1,7 @@
 from njupt_api.baselib import PlayContextManager, logger
 
+from .exc import LoginError
+
 
 class SSO(PlayContextManager):
     def __init__(self) -> None:
@@ -14,6 +16,9 @@ class SSO(PlayContextManager):
 
         Returns:
             bool，表明判登录是否成功。
+
+        Raises:
+            LoginError: 登录失败，暂时不包含任何提示信息……
         """
         await self.page.goto("http://i.njupt.edu.cn/")
 
@@ -24,7 +29,7 @@ class SSO(PlayContextManager):
         await self.page.wait_for_load_state("networkidle")
         if "user-login" in self.page.url:
             logger.error(f"{username} | 登录失败，请检查学号和密码是否正确。")
-            return False
+            raise LoginError("unknown")
 
         logger.info(f"{username} | 登录南邮统一身份认证成功。")
         self.isLogin = True

@@ -7,10 +7,11 @@ from sqlmodel import Session, select
 
 from njupt_api.baselib import logger
 from njupt_api.zhengfang import (
-    ZhengFang,
     course_dict_serializer,
     course_list_serializer,
+    jwxt,
 )
+from njupt_api.zhengfang.exc import LoginError
 from router.enhance.lib import ReturnDto, ScheduleQueryDto, apply_enhance, get_session
 from router.enhance.model import Course
 
@@ -32,20 +33,16 @@ async def post_schedule_class(
         logger.success(f"{student.week=} 从数据库中返回一次性存储的班级课表。")
         return await apply_enhance(course_list, student.week, student.img)
     if student.username and student.password:
-        async with ZhengFang() as zf:
-            if await zf.login(student.username, student.password):
+        try:
+            async with jwxt(student.username, student.password) as zf:
                 course_list = course_list_serializer(await zf.get_class_schedule())
                 logger.success(
                     f"{student.username} | {student.week=} 获取指定学生的班级课表成功。",
                 )
                 return await apply_enhance(course_list, student.week, student.img)
-            logger.error(
-                f"{student.username} | 获取课程表失败，请检查账号密码是否正确后再试。",
-            )
-            return ReturnDto(
-                success=False,
-                message="获取课程表失败，请检查账号密码是否正确后再试。",
-            )
+        except LoginError as e:
+            return ReturnDto(success=False, message=str(e))
+
     else:
         logger.error(
             f"参数错误，请同时携带或同时不携带学号和密码参数: {student.username=} | {student.password=}",
@@ -65,18 +62,13 @@ async def post_schedule_student(student: ScheduleQueryDto) -> ReturnDto:
             message="查询学生课表需要同时提供学号和密码参数。",
         )
 
-    async with ZhengFang() as zf:
-        if await zf.login(student.username, student.password):
+    try:
+        async with jwxt(student.username, student.password) as zf:
             course_list = course_list_serializer(await zf.get_student_schedule())
             logger.success(f"{student.username} | 获取学生个人课表成功。")
             return await apply_enhance(course_list, student.week, student.img)
-        logger.error(
-            f"{student.username} | 获取课程表失败，请检查账号密码是否正确后再试。",
-        )
-        return ReturnDto(
-            success=False,
-            message="获取课程表失败，请检查账号密码是否正确后再试。",
-        )
+    except LoginError as e:
+        return ReturnDto(success=False, message=str(e))
 
 
 @api_router.get("/schedule/img/{name}")

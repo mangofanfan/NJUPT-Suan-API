@@ -9,10 +9,11 @@ from sqlmodel import Session, select
 
 from njupt_api.baselib import LoggingMiddleware, logger
 from njupt_api.zhengfang import (
-    ZhengFang,
     course_dict_serializer,
     course_list_serializer,
+    jwxt,
 )
+from njupt_api.zhengfang.exc import LoginError
 from router.enhance.lib import ReturnDto, apply_enhance
 from router.enhance.model import Course, engine
 
@@ -76,16 +77,13 @@ async def tool_schedule_class_special(
     week: WEEK_TYPE = 0,
     img: IMG_TYPE = False,
 ) -> ReturnDto:
-    async with ZhengFang() as zf:
-        if await zf.login(username, password):
+    try:
+        async with jwxt(username, password) as zf:
             final_course_list = course_list_serializer(await zf.get_class_schedule())
             logger.success(f"{username} | 获取指定学生的班级课表成功。")
             return await apply_enhance(final_course_list, week, img)
-        logger.error(f"{username} | 获取课程表失败，请检查账号密码是否正确后再试。")
-        return ReturnDto(
-            success=False,
-            message="获取课程表失败，请检查账号密码是否正确后再试。",
-        )
+    except LoginError as e:
+        return ReturnDto(success=False, message=str(e))
 
 
 @mcp.tool(
@@ -106,16 +104,13 @@ async def tool_schedule_student_special(
     week: WEEK_TYPE = 0,
     img: IMG_TYPE = False,
 ) -> ReturnDto:
-    async with ZhengFang() as zf:
-        if await zf.login(username, password):
+    try:
+        async with jwxt(username, password) as zf:
             final_course_list = course_list_serializer(await zf.get_student_schedule())
             logger.success(f"{username} | 获取指定学生的个人课表成功。")
             return await apply_enhance(final_course_list, week, img)
-        logger.error(f"{username} | 获取课程表失败，请检查账号密码是否正确后再试。")
-        return ReturnDto(
-            success=False,
-            message="获取课程表失败，请检查账号密码是否正确后再试。",
-        )
+    except LoginError as e:
+        return ReturnDto(success=False, message=str(e))
 
 
 @mcp.tool(

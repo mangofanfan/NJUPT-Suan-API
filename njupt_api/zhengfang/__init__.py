@@ -1,4 +1,5 @@
 from .createcourse import create_course_schedule
+from .lib import jwxt
 from .sso import SSO
 from .types import Course, course_dict_serializer, course_list_serializer
 from .zhengfang import ZhengFang
@@ -10,4 +11,5 @@ __all__ = [
     course_dict_serializer,
     course_list_serializer,
     ZhengFang,
+    jwxt,
 ]

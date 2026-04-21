@@ -2,9 +2,11 @@ from ddddocr import DdddOcr
 from playwright.async_api import Browser, BrowserContext, Page, Playwright
 
 from njupt_api.baselib import PlayContextManager, logger
-from njupt_api.zhengfang import Course
-from njupt_api.zhengfang.createcourse import create_course_schedule
-from njupt_api.zhengfang.sso import SSO
+
+from .createcourse import create_course_schedule
+from .exc import LoginError
+from .sso import SSO
+from .types import Course
 
 
 class ZhengFang(PlayContextManager):
@@ -28,7 +30,10 @@ class ZhengFang(PlayContextManager):
         使用用户名和密码实现教务系统登录。
 
         Returns:
-             bool，表明登录是否成功。
+            bool，表明登录是否成功。
+
+        Raises:
+            LoginError: 登录失败，包含提示信息
         """
         await self.page.goto("http://jwxt.njupt.edu.cn")
 
@@ -58,7 +63,7 @@ class ZhengFang(PlayContextManager):
             return await self.login(username, password)
         await dialog.accept()
         logger.error(f"{username} | 登录失败，教务系统提示信息为: {dialog.message}")
-        return False
+        raise LoginError(dialog.message)
 
     async def get_class_schedule(self) -> list[Course]:
         await self.page.locator("a.top_link:has-text('公用信息')").click()
