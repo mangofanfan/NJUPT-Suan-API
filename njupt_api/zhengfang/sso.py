@@ -27,9 +27,10 @@ class SSO(PlayContextManager):
         await self.page.click('button[type="button"]')
 
         await self.page.wait_for_load_state("networkidle")
+        await self.page.wait_for_timeout(2000)
         if "user-login" in self.page.url:
             logger.error(f"{username} | 登录失败，请检查学号和密码是否正确。")
-            raise LoginError("unknown")
+            raise LoginError("SSO 登录未成功，可能是学号密码错误，请重试。")
 
         logger.info(f"{username} | 登录南邮统一身份认证成功。")
         self.isLogin = True
