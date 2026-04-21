@@ -5,6 +5,7 @@ export interface ConfigSystemDto {
 }
 
 export interface ConfigScheduleDto {
+  playwright_headless?: true
   jwxt_login_method?: 'jwxt' | 'sso'
   semester_start_date?: string
   schedule_title_template?: string

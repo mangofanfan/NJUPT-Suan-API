@@ -61,6 +61,7 @@ class Config:
         doc_system["port"] = 8000
         doc_system["reload"] = True
 
+        doc_schedule["playwright_headless"] = True
         doc_schedule["jwxt_login_method"] = "sso"
         doc_schedule["semester_start_date"] = "2026-03-02"
         doc_schedule["schedule_title_template"] = "芒果酸的第 {title} 周课程表"

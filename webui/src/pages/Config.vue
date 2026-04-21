@@ -72,6 +72,12 @@ function varTag(code: string, description: string) {
       <n-collapse-item name="schedule" title="课表设置">
         <n-flex vertical>
           <setting-card
+            v-model:boolean-value="CONFIG.data.schedule.playwright_headless"
+            message="在生产环境中应当为 True，请参阅文档。"
+            show-switch
+            title="Playwright Headless 模式"
+          />
+          <setting-card
             v-model:selection-value="CONFIG.data.schedule.jwxt_login_method"
             :selection-options="JwxtLoginMethodOptions"
             message="连接到校园网时，可以使用教务系统直接登录；在校园外则需要使用 SSO 统一身份认证。"

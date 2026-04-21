@@ -6,6 +6,8 @@ from playwright.async_api import (
     async_playwright,
 )
 
+from . import config
+
 
 class PlayContextManager:
     def __init__(
@@ -26,7 +28,7 @@ class PlayContextManager:
         """手动启动"""
         self.playwright = await async_playwright().start()  # 不是 __enter__
         self.browser = await self.playwright.chromium.launch(
-            headless=False,
+            headless=config.get("schedule", "playwright_headless", True),
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
