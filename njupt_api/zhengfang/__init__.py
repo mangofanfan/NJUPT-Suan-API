@@ -1,4 +1,5 @@
 from .createcourse import create_course_schedule
+from .exc import LoginError
 from .lib import jwxt
 from .sso import SSO
 from .types import Course, course_dict_serializer, course_list_serializer
@@ -12,4 +13,5 @@ __all__ = [
     course_list_serializer,
     ZhengFang,
     jwxt,
+    LoginError,
 ]
