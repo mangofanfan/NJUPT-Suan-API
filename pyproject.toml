@@ -1,0 +1,63 @@
+[project]
+name = "njupt-suan-api"
+version = "0.1.0"
+description = "API and MCP server for NJUPT infomation ~"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "beautifulsoup4>=4.14.3",
+    "ddddocr>=1.6.1",
+    "fastapi>=0.135.3",
+    "fastmcp>=3.2.0",
+    "loguru>=0.7.3",
+    "mcp>=1.27.0",
+    "playwright>=1.58.0",
+    "pydantic>=2.12.5",
+    "sqlalchemy>=2.0.49",
+    "sqlmodel>=0.0.38",
+    "uvicorn>=0.43.0",
+    "watchfiles>=1.1.1",
+    "websockets>=16.0",
+]
+
+[tool.ruff]
+preview = true
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "B",
+    "C",
+    "E",
+    "F",
+    "E",
+    "Q",
+    "I",
+    "N",
+    "W",
+    "DOC",
+    "RSE",
+    "RET",
+    "FAST",
+    "YTT",
+    "ANN",
+    "ASYNC",
+    "COM",
+    "T20",
+    "SIM",
+    "PTH",
+    "FLY",
+    "RUF",
+]
+
+ignore = [
+    "PTH123",
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    "RUF029",
+    "C90",
+    "COM812",
+]
