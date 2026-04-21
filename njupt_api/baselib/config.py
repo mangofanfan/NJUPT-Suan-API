@@ -60,11 +60,12 @@ class Config:
         doc_system["host"] = "0.0.0.0"
         doc_system["port"] = 8000
         doc_system["reload"] = True
+        doc_system["public_host"] = "http://127.0.0.1:8000"
 
         doc_schedule["playwright_headless"] = True
         doc_schedule["jwxt_login_method"] = "sso"
         doc_schedule["semester_start_date"] = "2026-03-02"
-        doc_schedule["schedule_title_template"] = "芒果酸的第 {title} 周课程表"
+        doc_schedule["schedule_title_template"] = "芒果酸的第 {week} 周课程表"
         doc_schedule["schedule_subtitle_template"] = "我也要上吗？"
 
         doc_log["log_api_request_details"] = False

@@ -70,7 +70,7 @@ async def apply_enhance(course_list: list[dict], week: int, img: bool) -> Return
 
     img_url = None
     if img:
-        img_url = f"http://172.28.143.24:8000/api/schedule/img/{
+        img_url = f"{config.get('system', 'public_host', 'http://127.0.0.1:8000')}/api/schedule/img/{
             await generate_img(final_course_list, title_template.format(**vars_), subtitle_template.format(**vars_))
         }"
 

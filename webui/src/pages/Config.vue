@@ -67,6 +67,12 @@ function varTag(code: string, description: string) {
             show-switch
             title="热重载 Python 代码文件"
           />
+          <setting-card
+            v-model:string-value="CONFIG.data.system.public_host"
+            message="Suan API 需要对外提供资源（例如课表图片）时，使用此主机名"
+            show-input
+            title="外部域名 / 主机名"
+          />
         </n-flex>
       </n-collapse-item>
       <n-collapse-item name="schedule" title="课表设置">
