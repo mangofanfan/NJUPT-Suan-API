@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'Maple Mono CN';
+  src: url('https://file.mangofanfan.cn/directlink/assets/maple-mono-cn/MapleMono-CN-Medium.woff2') format('woff2'),
+  url('https://file.mangofanfan.cn/directlink/assets/maple-mono-cn/MapleMono-CN-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Maple Mono CN';
+  src: url('https://file.mangofanfan.cn/directlink/assets/maple-mono-cn/MapleMono-CN-Bold.woff2') format('woff2'),
+  url('https://file.mangofanfan.cn/directlink/assets/maple-mono-cn/MapleMono-CN-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Smiley sans';
+  src: url('https://file.mangofanfan.cn/directlink/assets/smiley-sans/SmileySans-Oblique.ttf.woff2') format('woff2'),
+  url("https://file.mangofanfan.cn/directlink/assets/smiley-sans/SmileySans-Oblique.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

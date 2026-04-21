@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="OxcSettings">
+    <option name="fixAllOnSave" value="true" />
+    <flags>
+      <entry key="fix_kind" value="ALL" />
+    </flags>
+    <option name="typeAware" value="true" />
+  </component>
+</project>

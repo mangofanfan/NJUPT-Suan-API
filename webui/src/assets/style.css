@@ -1,0 +1,57 @@
+@import 'ansi-color.css';
+@import "font.css";
+
+/* 滚动条 */
+div::-webkit-scrollbar {
+  width: 8px;
+  height: 1px;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  box-shadow: inset 0 0 5px rgb(108 108 108 / 0.2);
+  background: #519f72;
+}
+
+div::-webkit-scrollbar-track {
+  box-shadow: none;
+  border-radius: 4px;
+  background: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.line-1 {
+  width: 120px;
+  white-space: nowrap; /* 1. 强制文本不换行 */
+  overflow: hidden; /* 2. 隐藏超出部分 */
+  text-overflow: ellipsis; /* 3. 超出部分显示... */
+  text-align: center;
+}
+
+.min-width {
+  min-width: 180px;
+}
+
+.max-width {
+  max-width: 180px;
+}
+
+.min-width-large {
+  min-width: 300px;
+}
+
+.max-width-large {
+  max-width: 300px;
+}
