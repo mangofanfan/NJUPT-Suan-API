@@ -30,7 +30,6 @@ class PlayContextManager:
         self.playwright = await async_playwright().start()  # 不是 __enter__
         self.browser = await self.playwright.chromium.launch(
             headless=config.get("schedule", "playwright_headless", True),
-            channel="chromium",
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
