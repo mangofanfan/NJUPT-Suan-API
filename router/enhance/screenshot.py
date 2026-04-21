@@ -25,7 +25,9 @@ class ScreenShot(PlayContextManager):
     async def shot(self, save_path: str) -> None:
         await self.page.mouse.move(0, 0)
         try:
-            await self.page.wait_for_load_state("networkidle", timeout=1000)
+            await self.page.wait_for_load_state(timeout=10000)
+        except Exception:
+            pass
         finally:
             await self.page.screenshot(path=save_path)
         logger.debug(f"截图 | 截图已经保存在 {save_path=}")
