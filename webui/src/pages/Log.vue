@@ -14,7 +14,7 @@ ansiUp.use_classes = true
 let ws: WebSocket | null = null
 
 const initWebSocket = () => {
-  ws = new WebSocket('ws://127.0.0.1:8000/ws/logs')
+  ws = new WebSocket(`ws://${window.location.hostname}:8000/ws/logs`)
 
   ws.onmessage = (event) => {
     // 1. 解析 ANSI 颜色编码
