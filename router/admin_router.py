@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from sqlmodel import Session, delete, select
 
 from njupt_api.baselib import config, logger
-from njupt_api.zhengfang import ZhengFang, course_list_serializer
+from njupt_api.zhengfang import LoginError, course_list_serializer, jwxt
 from router.enhance.auth import verify_token
 from router.enhance.lib import AliasDto, ReturnDto, TestDto, get_session
 from router.enhance.model import Alias, Course
@@ -37,8 +37,8 @@ async def validate_token(vtd: ValidateTokenDto) -> ReturnDto:
 
 @admin_router.post("/schedule/test", dependencies=[Depends(verify_token)])
 async def post_schedule_test(test: TestDto, session: Annotated[Session, Depends(get_session)]) -> ReturnDto:
-    async with ZhengFang() as zf:
-        if await zf.login(test.username, test.password):
+    try:
+        async with jwxt(test.username, test.password) as zf:
             if test.scheduleType == "class":
                 final_course_list = course_list_serializer(
                     await zf.get_class_schedule(),
@@ -67,13 +67,8 @@ async def post_schedule_test(test: TestDto, session: Annotated[Session, Depends(
                 success=False,
                 message="参数错误，请检查 scheduleType 参数。",
             )
-        logger.error(
-            f"{test.username} | 获取课程表失败，请检查账号密码是否正确后再试。",
-        )
-        return ReturnDto(
-            success=False,
-            message="获取课程表失败，请检查账号密码是否正确后再试。",
-        )
+    except LoginError as e:
+        return ReturnDto(success=False, message=str(e))
 
 
 @admin_router.get("/schedule/test", dependencies=[Depends(verify_token)])
