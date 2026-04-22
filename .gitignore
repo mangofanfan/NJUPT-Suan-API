@@ -10,3 +10,5 @@ temp/
 
 # Virtual environments
 .venv
+
+.scripts
