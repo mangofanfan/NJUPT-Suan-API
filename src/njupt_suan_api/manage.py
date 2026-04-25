@@ -171,7 +171,6 @@ def run(
         host=host,
         port=port,
         reload=reload,
-        reload_dirs=["api", "router"],
         access_log=False,
         log_level="critical",
         timeout_graceful_shutdown=2,
