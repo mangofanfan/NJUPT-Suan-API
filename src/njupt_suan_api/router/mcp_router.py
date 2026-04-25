@@ -7,15 +7,10 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 from sqlmodel import Session, select
 
-from njupt_api.baselib import LoggingMiddleware, logger
-from njupt_api.zhengfang import (
-    course_dict_serializer,
-    course_list_serializer,
-    jwxt,
-)
-from njupt_api.zhengfang.exc import LoginError
-from router.enhance.lib import ReturnDto, apply_enhance
-from router.enhance.model import Course, engine
+from njupt_suan_api.api.baselib import LoggingMiddleware, logger
+from njupt_suan_api.api.zhengfang import LoginError, course_dict_serializer, course_list_serializer, jwxt
+from njupt_suan_api.router.enhance.lib import ReturnDto, apply_enhance
+from njupt_suan_api.router.enhance.model import Course, engine
 
 mcp = FastMCP("NJUPT API Suan")
 

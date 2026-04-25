@@ -12,3 +12,6 @@ temp/
 .venv
 
 .scripts
+
+# vite 构建产物
+src/njupt_suan_api/static/

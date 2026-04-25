@@ -7,8 +7,8 @@ from typing import Sequence
 
 from sqlmodel import Session, select
 
-from njupt_api.baselib import logger
-from router.enhance.model import Alias, engine
+from njupt_suan_api.api.baselib import logger
+from njupt_suan_api.router.enhance.model import Alias, engine
 
 
 def apply_alias(courses: list[dict]) -> list[dict]:

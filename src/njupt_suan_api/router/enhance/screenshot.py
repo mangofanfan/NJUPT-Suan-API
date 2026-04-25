@@ -7,7 +7,7 @@ from uuid import uuid4
 
 from playwright.async_api import ViewportSize
 
-from njupt_api.baselib import PlayContextManager, logger
+from njupt_suan_api.api.baselib import PlayContextManager, logger
 
 TEMP_DIR = Path.cwd() / "temp"
 

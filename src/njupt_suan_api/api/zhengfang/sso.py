@@ -1,5 +1,4 @@
-from njupt_api.baselib import PlayContextManager, logger
-
+from ..baselib import PlayContextManager, logger
 from .exc import LoginError
 
 

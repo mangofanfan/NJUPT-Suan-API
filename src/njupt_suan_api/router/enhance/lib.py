@@ -4,7 +4,7 @@ from typing import Any, Generator, Literal
 from pydantic import BaseModel
 from sqlmodel import Session
 
-from njupt_api.baselib import config
+from njupt_suan_api.api.baselib import config
 
 from .alias import apply_alias
 from .model import engine

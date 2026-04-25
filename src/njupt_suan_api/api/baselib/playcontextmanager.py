@@ -7,7 +7,7 @@ from playwright.async_api import (
     async_playwright,
 )
 
-from . import config
+from .config import config
 
 
 class PlayContextManager:

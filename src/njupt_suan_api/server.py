@@ -12,20 +12,15 @@ from fastapi.staticfiles import StaticFiles
 from fastmcp.utilities.lifespan import combine_lifespans
 from watchfiles import awatch
 
-from njupt_api.baselib import (
+from njupt_suan_api.api.baselib import (
     LogRecord,
     config,
     log_buffer,
     log_record_serialize,
     logger,
 )
-from router import __version__
-from router.admin_router import admin_router
-from router.api_router import api_router
-from router.enhance.lib import ReturnDto
-from router.enhance.model import create_db_and_tables
-from router.mcp_router import mcp_app
-from router.webui_router import webui_router
+from njupt_suan_api.router import ASSETS_DIR, __version__, admin_router, api_router, mcp_app, webui_router
+from njupt_suan_api.router.enhance import ReturnDto, create_db_and_tables
 
 DATA_DIR = Path.cwd() / "data"
 
@@ -166,7 +161,7 @@ app.include_router(webui_router)
 app.mount("/mcp", mcp_app)
 app.mount(
     "/assets",
-    StaticFiles(directory=Path.cwd() / "webui" / "dist" / "assets"),
+    StaticFiles(directory=ASSETS_DIR),
     name="assets",
 )
 

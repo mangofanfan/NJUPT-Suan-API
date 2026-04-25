@@ -6,11 +6,11 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlmodel import Session, delete, select
 
-from njupt_api.baselib import config, logger
-from njupt_api.zhengfang import LoginError, course_list_serializer, jwxt
-from router.enhance.auth import verify_token
-from router.enhance.lib import AliasDto, ReturnDto, TestDto, get_session
-from router.enhance.model import Alias, Course
+from njupt_suan_api.api.baselib import config, logger
+from njupt_suan_api.api.zhengfang import LoginError, course_list_serializer, jwxt
+from njupt_suan_api.router.enhance.auth import verify_token
+from njupt_suan_api.router.enhance.lib import AliasDto, ReturnDto, TestDto, get_session
+from njupt_suan_api.router.enhance.model import Alias, Course
 
 
 class ValidateTokenDto(BaseModel):

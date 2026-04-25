@@ -35,8 +35,9 @@ export default defineConfig({
       input: {
         index: path.resolve(__dirname, 'index.html'),
         'index-schedule': path.resolve(__dirname, 'index-schedule.html'),
-      }
+      },
     },
+    outDir: "../src/njupt_suan_api/static"
   },
   resolve: {
     alias: {

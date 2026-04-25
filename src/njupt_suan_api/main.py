@@ -1,8 +1,12 @@
+"""
+main.py 未来不再作为项目入口，日后可能会被删除。请参照 README 使用命令行作为入口，或直接使用 uvicorn 命令。
+"""
+
 from pathlib import Path
 from secrets import token_urlsafe
 
-from njupt_api.baselib import config, logger
-from router import __version__
+from njupt_suan_api.api.baselib import config, logger
+from njupt_suan_api.router import __version__
 
 DATA_DIR = Path.cwd() / "data"
 TEMP_DIR = Path.cwd() / "temp"
@@ -10,7 +14,7 @@ TEMP_DIR = Path.cwd() / "temp"
 
 if __name__ == "__main__":
     try:
-        with open(file=Path.cwd() / "njupt_api" / "art.txt", mode="r", encoding="utf-8") as f:
+        with open(file=Path.cwd() / "api" / "art.txt", mode="r", encoding="utf-8") as f:
             print(f.read().format(__version__))  # noqa:T201
     except FileNotFoundError:
         pass
@@ -77,7 +81,7 @@ if __name__ == "__main__":
         host=host,
         port=port,
         reload=reload,
-        reload_dirs=["njupt_api", "router"],
+        reload_dirs=["api", "router"],
         access_log=False,
         log_level="critical",
         timeout_graceful_shutdown=2,

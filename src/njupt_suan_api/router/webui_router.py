@@ -4,8 +4,10 @@ import aiofiles
 from fastapi import APIRouter
 from fastapi.responses import HTMLResponse
 
-WEBUI_INDEX = Path.cwd() / "webui" / "dist" / "index.html"
-SCHEDULE_INDEX = Path.cwd() / "webui" / "dist" / "index-schedule.html"
+STATIC_DIR = Path(__file__).parent.parent / "static"
+WEBUI_INDEX = STATIC_DIR / "index.html"
+SCHEDULE_INDEX = STATIC_DIR / "index-schedule.html"
+ASSETS_DIR = STATIC_DIR / "assets"
 
 webui_router = APIRouter(prefix="/webui")
 

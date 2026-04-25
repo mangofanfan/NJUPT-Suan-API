@@ -1,8 +1,7 @@
 from ddddocr import DdddOcr
 from playwright.async_api import Browser, BrowserContext, Page, Playwright
 
-from njupt_api.baselib import PlayContextManager, logger
-
+from ..baselib import PlayContextManager, logger
 from .createcourse import create_course_schedule
 from .exc import LoginError
 from .sso import SSO

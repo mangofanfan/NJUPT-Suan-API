@@ -18,7 +18,7 @@ class Config:
 
     async def load_json(self) -> None:
         """
-        从 Toml 配置文件中读取配置。
+        异步从配置文件中读取配置。
         """
         logger.debug("异步读取配置文件。")
         async with aiofiles.open(file=CONFIG_PATH, mode="r") as f:
@@ -49,7 +49,7 @@ class Config:
 
     def init_config(self) -> None:
         """
-        重新初始化 Toml 配置文件。这会重置所有配置。
+        重新初始化配置文件。这会重置所有配置。
         """
         logger.warning("初始化配置文件，这会重置所有配置。")
         self._doc.clear()
@@ -59,7 +59,7 @@ class Config:
 
         doc_system["host"] = "0.0.0.0"
         doc_system["port"] = 8000
-        doc_system["reload"] = True
+        doc_system["reload"] = False
         doc_system["public_host"] = "http://127.0.0.1:8000"
 
         doc_schedule["playwright_headless"] = True
@@ -78,7 +78,7 @@ class Config:
 
     async def save_json(self) -> None:
         """
-        异步保存 Toml 配置文件。
+        异步保存配置文件。
         """
         logger.debug("异步保存配置文件。")
         async with aiofiles.open(file=CONFIG_PATH, mode="w") as f:

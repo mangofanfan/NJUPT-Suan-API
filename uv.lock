@@ -702,7 +702,7 @@ wheels = [
 [[package]]
 name = "njupt-suan-api"
 version = "0.1.1"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "aiofiles" },
     { name = "beautifulsoup4" },

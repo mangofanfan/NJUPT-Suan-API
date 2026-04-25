@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy import JSON, Column
 from sqlmodel import Field, SQLModel, create_engine
 
-sqlite_file_name = "data/njupt_api.db"
+sqlite_file_name = "data/njupt-api.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
 engine = create_engine(sqlite_url, connect_args={"check_same_thread": False})
