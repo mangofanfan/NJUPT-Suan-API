@@ -1,6 +1,6 @@
 [project]
 name = "njupt-suan-api"
-version = "0.1.4"
+version = "0.1.5"
 description = "API and MCP server for NJUPT infomation ~"
 readme = "README.md"
 requires-python = ">=3.13"

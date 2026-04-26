@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 6 种更新类别：Added、Changed、Deprecated、Removed、Fixed、Security。
 
+## [Unreleased]
+
+等待中...
+
 ## [0.1.4] - 2026-04-26
 
 ### Fixed
