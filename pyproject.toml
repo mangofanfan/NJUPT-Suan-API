@@ -1,6 +1,6 @@
 [project]
 name = "njupt-suan-api"
-version = "0.1.2"
+version = "0.1.3"
 description = "API and MCP server for NJUPT infomation ~"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -8,7 +8,7 @@ dependencies = [
     "aiofiles>=25.1.0",
     "beautifulsoup4>=4.14.3",
     "ddddocr>=1.6.1",
-    "fastapi>=0.135.3",
+    "fastapi>=0.136.1",
     "fastmcp>=3.2.0",
     "loguru>=0.7.3",
     "mcp>=1.27.0",
@@ -17,14 +17,14 @@ dependencies = [
     "rich>=15.0.0",
     "sqlalchemy>=2.0.49",
     "sqlmodel>=0.0.38",
-    "typer>=0.24.2",
+    "typer>=0.25.0",
     "uvicorn>=0.46.0",
     "watchfiles>=1.1.1",
     "websockets>=16.0",
 ]
 
 [project.scripts]
-suanapi = "njupt_suan_api.manage:app"
+njupt-suan-api = "njupt_suan_api.manage:app"
 
 [build-system]
 requires = ["hatchling"]

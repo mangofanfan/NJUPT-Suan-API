@@ -2,6 +2,8 @@
 
 NJUPT Suan API 是一个 FastAPI 项目，目标在于实现对 NJUPT（南京邮电大学）的信息获取 API 和 MCP 服务。
 
+在 `pyproject.toml` 中，本项目的包名，以及命令行入口名为 `njupt-suan-api`。
+
 ## 文档
 
 虽然项目还没个两样，但是文档其实也没个两样 ~~（什么东西）~~
