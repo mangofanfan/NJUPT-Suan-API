@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 6 种更新类别：Added、Changed、Deprecated、Removed、Fixed、Security。
 
+## [0.1.4] - 2026-04-26
+
+### Fixed
+
+- 修复从命令行运行 `njupt-suan-api init` 时由于 playwright 命令未找到而失败的问题。
+
 ## [0.1.3] - 2026-04-26
 
 ### Changed
