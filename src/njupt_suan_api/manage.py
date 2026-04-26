@@ -1,4 +1,5 @@
 import subprocess
+import sys
 from secrets import token_urlsafe
 
 import typer
@@ -52,7 +53,10 @@ def main(
     CLI 入口回调，所有子命令执行前都会经过这里。
     可以在这里放全局初始化（如日志级别、环境检查）。
     """
-    pass  # 没有 --version 时就正常放行，继续执行子命令
+    # 没有 --version 时就正常放行，继续执行子命令
+    console.print(
+        "[bright_black]NJUPT Suan API 仍然处于极早期的阶段。如果遇到任何问题，请告诉芒果帆帆喵！[/bright_black]\n"
+    )
 
 
 @app.command()
@@ -89,7 +93,7 @@ def init(force: bool = typer.Option(False, "--force", "-f", help="强制初始�
 
     # 3 执行 uv run playwright install chromium
     console.print("[bright_black]即将安装 playwright 的 chromium，这可能是耗时最长的部分。[/bright_black]")
-    cp3 = subprocess.run(["playwright", "install", "chromium"], cwd=WORKSPACE_DIR)
+    cp3 = subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"], cwd=WORKSPACE_DIR)
     if cp3.returncode != 0:
         console.print("[yellow]运行 playwright install chromuim 失败，双是什么原因呢？[/yellow]")
         raise typer.Exit(code=cp3.returncode)

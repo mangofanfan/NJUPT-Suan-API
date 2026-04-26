@@ -4,6 +4,22 @@ version = "0.1.3"
 description = "API and MCP server for NJUPT infomation ~"
 readme = "README.md"
 requires-python = ">=3.13"
+license = "MIT"
+
+authors = [
+    { name = "MangoFanFanw", email = "mangofanfanw@icloud.com" }
+]
+
+maintainers = [
+    { name = "MangoFanFanw", email = "mangofanfanw@icloud.com" }
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.13",
+]
+
 dependencies = [
     "aiofiles>=25.1.0",
     "beautifulsoup4>=4.14.3",
@@ -22,6 +38,13 @@ dependencies = [
     "watchfiles>=1.1.1",
     "websockets>=16.0",
 ]
+
+[project.urls]
+Homepage = "https://suan.mangofanfan.cn"
+Documentation = "https://suan.mangofanfan.cn"
+Repository = "https://github.com/mangofanfan/NJUPT-Suan-API.git"
+Changelog = "https://github.com/mangofanfan/NJUPT-Suan-API/blob/master/CHANGELOG.md"
+Issues = "https://github.com/mangofanfan/NJUPT-Suan-API/issues"
 
 [project.scripts]
 njupt-suan-api = "njupt_suan_api.manage:app"
