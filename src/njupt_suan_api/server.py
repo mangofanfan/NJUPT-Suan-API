@@ -24,10 +24,36 @@ from njupt_suan_api.router.enhance import ReturnDto, create_db_and_tables
 
 DATA_DIR = Path.cwd() / "data"
 
+description = """
+🚀 NJUPT Suan API 的 API 文档在此。你也可以直接在此处测试 API。
+
+**NJUPT Suan API** 是一个为南京邮电大学（NJUPT）开发的项目。
+
+**项目** -
+[GitHub](https://github.com/mangofanfan/njupt-suan-api) |
+[Mango Gitea](https://gitea.mangofanfan.cn/SuanDev/njupt-suan-api) |
+[文档](https://suan.mangofanfan.cn)
+
+**文档** - [SwaggerUI](/docs) | [Redoc](/redoc) | [openapi.json](/openapi.json)
+
+### 如果您是访客
+
+部分 **admin** 分组的端点需要身份验证才能调用，它们一般会被标记。
+
+你可以在这里查看所有端点的详细信息，如果你需要进行针对 Suan API 的开发的话，这一定会对你有所帮助。
+
+### 如果您是管理员
+
+文档功能作为 FastAPI 的特色功能默认开启。
+
+如果你需要，在 Suan API 的设置中可以选择关闭文档功能。
+"""
+
+config.sync_load_json()
+
 
 async def toml_watcher() -> None:
     """配置文件监听器"""
-    await config.load_json()
     async for change in awatch(DATA_DIR / "config.json"):
         logger.info(f"配置文件更新，重新加载 | {change=}")
         await config.load_json()
@@ -48,7 +74,20 @@ async def life_span(_: FastAPI) -> AsyncGenerator[None, None]:
         logger.info("配置文件监听任务已结束。")
 
 
-app = FastAPI(lifespan=combine_lifespans(life_span, mcp_app.lifespan))
+# 文档功能是对 FastAPI app 实例进行配置的
+enable_docs = config.get("system", "docs", True)
+logger.debug(f"FastAPI 文档功能状态 - {enable_docs=}")
+
+app = FastAPI(
+    title="njupt-suan-api",
+    lifespan=combine_lifespans(life_span, mcp_app.lifespan),
+    description=description,
+    docs_url="/docs" if enable_docs else None,
+    redoc_url="/redoc" if enable_docs else None,
+    openapi_url="/openapi.json" if enable_docs else None,
+    version=__version__,
+    license_info={"name": "MIT", "identifier": "MIT"},
+)
 
 
 @app.middleware("http")

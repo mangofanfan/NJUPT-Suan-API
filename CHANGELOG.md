@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 6 种更新类别：Added、Changed、Deprecated、Removed、Fixed、Security。
 
-## [Unreleased]
+## [0.1.5] - 2026-04-28
 
-等待中...
+### Added
+
+- 增加开关 FastAPI 内置文档功能的选项。在此前，文档功能一直默认开启。
+
+### Changed
+
+- WebUI 版本升级至 1.1.0
+    - 增加开关 FastAPI `/docs` 文档端点的设置项。
+    - 删除「重启」和「关闭」Suan API 的预留按钮，因为技术上这难以实现。
 
 ## [0.1.4] - 2026-04-26
 

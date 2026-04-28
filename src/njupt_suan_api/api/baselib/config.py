@@ -61,6 +61,7 @@ class Config:
         doc_system["port"] = 8000
         doc_system["reload"] = False
         doc_system["public_host"] = "http://127.0.0.1:8000"
+        doc_system["docs"] = True
 
         doc_schedule["playwright_headless"] = True
         doc_schedule["jwxt_login_method"] = "sso"
