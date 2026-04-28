@@ -38,13 +38,6 @@ function varTag(code: string, description: string) {
 <template>
   <div id="config-container">
     <n-h2 prefix="bar">酸酸设置</n-h2>
-    <n-alert title="设置注意" type="info">
-      <n-p class="no-margin">
-        <n-text strong type="warning">系统设置</n-text>
-        - 需要完全重新启动 Suan API 才能应用；
-      </n-p>
-      <n-p class="no-margin">其他的设置可以即时生效。</n-p>
-    </n-alert>
 
     <n-collapse v-if="CONFIG.dataStatus" style="margin-top: 1rem">
       <n-collapse-item name="system" title="系统设置">
@@ -73,6 +66,25 @@ function varTag(code: string, description: string) {
             show-input
             title="外部域名 / 主机名"
           />
+          <setting-card
+            v-model:boolean-value="CONFIG.data.system.docs"
+            show-switch
+            title="Fast API 文档功能"
+          >
+            <n-p>
+              FastAPI 提供
+              <n-code inline>/docs</n-code>
+              和
+              <n-code inline>/redoc</n-code>
+              两个文档端口，以及一个
+              <n-code inline>/openapi.json</n-code>
+              结构化 API 数据文件。
+            </n-p>
+            <n-p
+              >如果你需要深入研究 Suan API，这是来自 FastAPI
+              的赠礼；如有安全方面顾虑也可以关闭。</n-p
+            >
+          </setting-card>
         </n-flex>
       </n-collapse-item>
       <n-collapse-item name="schedule" title="课表设置">
@@ -146,12 +158,20 @@ function varTag(code: string, description: string) {
       </n-collapse-item>
     </n-collapse>
 
-    <teleport v-if="extraVisible" defer to="#center-container">
+    <teleport v-if="extraVisible" defer to="#extra-control">
       <div class="header-card">
-        <n-flex vertical>
+        <n-flex align="center">
+          <n-alert type="info">
+            <n-p class="no-margin">
+              <n-text strong type="warning">系统设置</n-text>
+              需要完全重新启动 Suan API 才能应用；其他的设置可以即时生效。
+            </n-p>
+          </n-alert>
+
           <n-button
-            circle
+            round
             size="large"
+            style="margin-left: auto"
             type="success"
             @click="
               () => {
@@ -159,14 +179,26 @@ function varTag(code: string, description: string) {
                 MESSAGE.success('保存设置成功，后端会自动应用新的设置 ~')
               }
             "
-            >保存</n-button
+            >保存设置</n-button
           >
-          <n-button circle size="large" type="warning">重启</n-button>
-          <n-button circle size="large" type="error">关闭</n-button>
+
+          <n-popover placement="bottom" trigger="hover">
+            <template #trigger>
+              <n-button round size="large" type="tertiary">重启 Suan API</n-button>
+            </template>
+            <n-p>由于技术限制，无法从 WebUI 重启 Suan API 应用。</n-p>
+          </n-popover>
         </n-flex>
       </div>
     </teleport>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div.header-card {
+  border: 1px solid #519f72;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+</style>

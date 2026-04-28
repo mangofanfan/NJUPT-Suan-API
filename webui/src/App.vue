@@ -54,6 +54,7 @@ onMounted(async () => {
             <sidebar-nav />
           </div>
           <div id="center-content">
+            <div id="extra-control" />
             <div id="content-container">
               <router-view v-slot="{ Component }">
                 <keep-alive>
@@ -107,13 +108,20 @@ onMounted(async () => {
     #center-content {
       flex: 1;
       min-height: 0;
+      display: flex;
+      flex-direction: column;
+
+      #extra-control {
+        flex: 0;
+      }
 
       #content-container {
         border: 1px solid #519f72;
         border-radius: 10px;
         padding: 10px;
-        height: 100%;
         overflow: auto;
+        height: 100%;
+        flex: 1;
       }
     }
   }

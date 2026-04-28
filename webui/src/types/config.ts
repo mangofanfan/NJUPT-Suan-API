@@ -3,6 +3,7 @@ export interface ConfigSystemDto {
   port?: number
   reload?: boolean
   public_host?: string
+  docs?: boolean
 }
 
 export interface ConfigScheduleDto {

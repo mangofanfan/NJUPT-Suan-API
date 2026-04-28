@@ -38,6 +38,7 @@ declare module 'vue' {
     NSwitch: typeof import('naive-ui')['NSwitch']
     NTag: typeof import('naive-ui')['NTag']
     NText: typeof import('naive-ui')['NText']
+    NTooltip: typeof import('naive-ui')['NTooltip']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
@@ -71,6 +72,7 @@ declare global {
   const NSwitch: typeof import('naive-ui')['NSwitch']
   const NTag: typeof import('naive-ui')['NTag']
   const NText: typeof import('naive-ui')['NText']
+  const NTooltip: typeof import('naive-ui')['NTooltip']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
 }
