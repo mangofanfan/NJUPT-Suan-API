@@ -9,7 +9,7 @@ WEBUI_INDEX = STATIC_DIR / "index.html"
 SCHEDULE_INDEX = STATIC_DIR / "index-schedule.html"
 ASSETS_DIR = STATIC_DIR / "assets"
 
-webui_router = APIRouter(prefix="/webui")
+webui_router = APIRouter(prefix="/webui", tags=["webui"])
 
 
 @webui_router.get("/", response_class=HTMLResponse)
